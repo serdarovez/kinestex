@@ -335,8 +335,6 @@ export default function KinesteXPlayer() {
 
   useEffect(() => {
     const handleMessage = (event) => {
-      const currentSrcURL = getSrcURL(); // Get the current URL for origin check
-      if (event.origin !== currentSrcURL) return; // Crucial security check
 
       try {
         const message = JSON.parse(event.data);
@@ -352,6 +350,7 @@ export default function KinesteXPlayer() {
             break;
           case "exit_kinestex":
             setVisible(false);
+            console.log('exit kinestex')
             if (iframeRef.current) {
               iframeRef.current.src = "about:blank"; // Clear iframe src to stop processes
             }
